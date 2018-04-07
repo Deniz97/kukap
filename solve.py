@@ -13,7 +13,7 @@ seqStr = ""
 if __name__ == '__main__':
 
     for i in range(n):
-        lst[i] = [int(x) for x in input().split()] + [i, i, True] # TODO
+        lst[i] = [int(x) for x in input().split()] + [[i], i, True] # TODO
 
    
     leftCompSorted = getLeftSorteds(lst)
@@ -24,11 +24,9 @@ if __name__ == '__main__':
     for _ in range(n-1):
 
         leftComp = getLeftComp(leftCompSorted, rightCompSorted)
-        print(leftCompSorted)
-        print()
-        print()
-        rightComp = getRightComp(rightCompSorted, leftComp[1])
 
+        rightComp = getRightComp(rightCompSorted, leftComp[1])
+        
         if rightComp is not None:
 
             newComp, comptime = generateNewComp(
@@ -41,7 +39,7 @@ if __name__ == '__main__':
     # finished all concatenations
 
     finalIndex = getFinalIndex(leftCompSorted)
-
+    
     print(' '.join(map(lambda x: str(x), finalIndex)))
     print(ctr)
 
