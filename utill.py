@@ -83,3 +83,14 @@ def addComp(newComp,leftComp,rightComp):
 	bisect.insort(leftComp,newCompLeft)
 	bisect.insort(rightComp,newCompRight)
         
+
+def getFinalIndex(leftComp):
+	for i in leftComp:
+		if(leftComp[5]==True):
+			return i[4]
+
+	print("THIS SHOULD NOT HAPPEN")
+
+def getActionArray():
+	global concats_actions
+	return concats_actions
