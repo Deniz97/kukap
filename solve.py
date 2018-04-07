@@ -35,4 +35,19 @@ if __name__ == '__main__':
 
     # finished all concatenations
 
-    
+    finalIndex = getFinalIndex(leftCompSorted)
+
+    print(' '.join(map(lambda x: str(x), finalIndex)))
+    print(ctr)
+
+    actionArr = getActionArray()
+
+    outputIndexes = [0] * n
+
+    for i, num in enumerate(finalIndex):
+        outputIndexes[num] = i
+
+    for x, y in actionArr:
+        print(outputIndexes[x], outputIndexes[y])
+
+
