@@ -1,21 +1,36 @@
-
 n = int(input())
-lst = [0] *n
+lst = [0] * n
+result = [None] * n
 
-# lstElement -> [solNoktaSayisi, sagNoktaSayisi, solKatsayi, sagKatsayi]
+ctr = 0
 
-def calcDuration(i1, i2):
-    return lst[i1][0] * lst[i1][1] * lst[i2][1]
-
-# i1 -> index of left one, i2 -> index of right one
-def calcYorgunluk(i1, i2):
-    return lst[i1][3] * lst[i2][2]
+# lstElement ->
+#   [solNoktaSayisi, sagNoktaSayisi, solKatsayi, sagKatsayi, index, isAvail]
 
 if __name__ == '__main__':
 
     for i in range(n):
-        lst.append([int x for x in input().split()])
+        lst[i] = [int(x) for x in input().split()] + [i, True] # TODO
 
+   
+    leftCompSorted = getLeftSorteds(lst)
+    rightCompSorted = getRightSorteds(lst)
 
+    setRunIndex(n)
 
+    for _ in range(n-1):
 
+        leftComp = getLeftComp(leftCompSorted, rightCompSorted)
+
+        rightComp = getRightComp(rightCompSorted, leftComp[1])
+
+        if rightComp is not None:
+
+            newComp, comptime = generateNewComp(leftComp, rightComp)
+
+            addComp(newComp, leftCompSorted, rightCompSorted)
+
+            ctr += comptime
+
+    # finished all concatenations
+    
