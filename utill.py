@@ -66,7 +66,8 @@ def generateNewComp(leftComp,rightComp, leftCSort, rightCSort):
     index = concat(leftComp[4], rightComp[4])
     
     concats_actions.append([index[0], index[-1]])
-
+    if(index[0] == index[-1]):
+    	print("WHAAAT")
     for i in leftCSort:
         if( i[5] == leftComp[5] ):
             i[6] = False
