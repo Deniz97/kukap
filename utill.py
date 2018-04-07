@@ -28,11 +28,7 @@ def getLeftComp(leftComp, rightComp): #FOR NOW
         for i in leftComp:
                 if(i[6]==False):
                         continue
-                i[6]=False
-                for j in rightComp:
-                        if( j[5] == i[5] ):
-                                j[6] = False
-                                break
+                
                 return i
                 
 
@@ -42,10 +38,6 @@ def getRightComp(rightComp,cubuk_sayi):
         for i in rightComp:
                 if(i[6]==False):
                         continue
-
-                if( i[0] == cubuk_sayi):
-                        i[6] = False
-                        return i
 
         return None
 
@@ -60,7 +52,7 @@ def concat(ele1, ele2):
     return ele1 + ele2
 
 
-def generateNewComp(leftComp,rightComp):
+def generateNewComp(leftComp,rightComp, leftCSort, rightCSort):
 
     global concats_actions
 
@@ -71,6 +63,16 @@ def generateNewComp(leftComp,rightComp):
     index = concat(leftComp[4], rightComp[4])
 
     concats_actions.append([index[0], index[-1]])
+
+    for i in leftCSort:
+    	if( i[5] == leftComp[5] ):
+    		i[5] = False
+    		break
+
+    for i in rightCSort:
+    	if( i[5] == rightComp[5] ):
+    		i[5] = False
+    		break
 
     new_enzim = [solc,sagc,solkat,sagkat,runnin_index,True]
     time = solc*leftComp[1]*sagc
