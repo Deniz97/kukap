@@ -1,3 +1,5 @@
+from utill import *
+
 n = int(input())
 lst = [0] * n
 result = [None] * n
