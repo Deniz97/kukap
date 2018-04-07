@@ -24,7 +24,9 @@ if __name__ == '__main__':
     for _ in range(n-1):
 
         leftComp = getLeftComp(leftCompSorted, rightCompSorted)
-
+        print(leftCompSorted)
+        print()
+        print()
         rightComp = getRightComp(rightCompSorted, leftComp[1])
 
         if rightComp is not None:

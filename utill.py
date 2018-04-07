@@ -1,7 +1,7 @@
 import bisect
 runnin_index = 0
 
-#[solcubuk,sagcubuk,solkatsayi,sagkatsayi,index, isAvail, formüllü_sey]
+#[solcubuk,sagcubuk,solkatsayi,sagkatsayi,index_rec, running_index, isAvail,   formüllü_sey]
 
 epsilon = 0.00001
 concats_actions = []
@@ -17,21 +17,21 @@ def getStressByIndex(liste, i1, i2):
 
 
 def getLeftSorteds(liste):
-        m = list(map(lambda x: x+[x[0]*x[1]/(x[4]+epsilon)], liste))
-        return sorted(m, key=lambda x: x[6])
+        m = list(map(lambda x: x+[x[0]*x[1]/(x[3]+epsilon)], liste))
+        return sorted(m, key=lambda x: x[7])
 
 def getRightSorteds(liste):
-        m = list(map(lambda x: x+[x[1]/(x[3]+epsilon)] , liste))
-        return sorted(m, key=lambda x: x[6])
+        m = list(map(lambda x: x+[x[1]/(x[2]+epsilon)] , liste))
+        return sorted(m, key=lambda x: x[7])
 
 def getLeftComp(leftComp, rightComp): #FOR NOW
         for i in leftComp:
-                if(i[5]==False):
+                if(i[6]==False):
                         continue
-                i[5]=False
+                i[6]=False
                 for j in rightComp:
-                        if( j[4] == i[4] ):
-                                j[5] = False
+                        if( j[5] == i[5] ):
+                                j[6] = False
                                 break
                 return i
                 
@@ -40,11 +40,11 @@ def getLeftComp(leftComp, rightComp): #FOR NOW
 
 def getRightComp(rightComp,cubuk_sayi):
         for i in rightComp:
-                if(i[5]==False):
+                if(i[6]==False):
                         continue
 
                 if( i[0] == cubuk_sayi):
-                        i[5] = False
+                        i[6] = False
                         return i
 
         return None
@@ -79,15 +79,15 @@ def generateNewComp(leftComp,rightComp):
     #[solcubuk,sagcubuk,solkatsayi,sagkatsayi,index, isAvail, formül]
 
 def addComp(newComp,leftComp,rightComp):
-        newCompRight = newComp + [newComp[1]/(newComp[3]+epsilon)]
-        newCompLeft = newComp + [[newComp[0]*newComp[1]/(newComp[4]+epsilon)]]
+        newCompRight = newComp + [newComp[1]/(newComp[2]+epsilon)]
+        newCompLeft = newComp + [[newComp[0]*newComp[1]/(newComp[3]+epsilon)]]
         bisect.insort(leftComp,newCompLeft)
         bisect.insort(rightComp,newCompRight)
         
 
 def getFinalIndex(leftComp):
         for i in leftComp:
-                if(leftComp[5]==True):
+                if(leftComp[6]==True):
                         return i[4]
 
         print("THIS SHOULD NOT HAPPEN")
