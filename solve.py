@@ -13,7 +13,7 @@ seqStr = ""
 if __name__ == '__main__':
 
     for i in range(n):
-        lst[i] = [int(x) for x in input().split()] + [i, True] # TODO
+        lst[i] = [int(x) for x in input().split()] + [i, i, True] # TODO
 
    
     leftCompSorted = getLeftSorteds(lst)
@@ -31,7 +31,8 @@ if __name__ == '__main__':
 
         if rightComp is not None:
 
-            newComp, comptime = generateNewComp(leftComp, rightComp)
+            newComp, comptime = generateNewComp(
+                    leftComp, rightComp, leftCompSorted, rightCompSorted)
 
             addComp(newComp, leftCompSorted, rightCompSorted)
 
