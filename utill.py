@@ -10,12 +10,6 @@ def setRunIndex(n):
         global runnin_index
         runnin_index=n
 
-def getStressByEnzim(enzim1, enzim2):
-        pass
-
-def getStressByIndex(liste, i1, i2):
-        pass
-
 
 def getLeftSorteds(liste):
         m = list(map(lambda x: x+[x[0]*x[1]/(x[3]+epsilon)], liste))
@@ -42,8 +36,9 @@ def getLeftComp(leftComp, rightComp): #FOR NOW
 
 def getRightComp(rightComp,cubuk_sayi):
         for i in rightComp:
-                if(i[6]==False):
+                if(i[6]==False or i[0]!=cubuk_sayi):
                         continue
+
                 return i
 
         return None
@@ -66,17 +61,25 @@ def generateNewComp(leftComp,rightComp, leftCSort, rightCSort):
     index = concat(leftComp[4], rightComp[4])
     
     concats_actions.append([index[0], index[-1]])
-    if(index[0] == index[-1]):
-    	print("WHAAAT")
+    
     for i in leftCSort:
         if( i[5] == leftComp[5] ):
             i[6] = False
-            break
+            #break
+        
+        elif( i[5] == rightComp[5] ):
+            i[6] = False
+            #break
+
 
     for i in rightCSort:
         if( i[5] == rightComp[5] ):
             i[6] = False
-            break
+            #break
+
+        elif( i[5] == leftComp[5] ):
+            i[6] = False
+            #break
 
     new_enzim = [solc,sagc,solkat,sagkat,index,runnin_index,True]
     runnin_index += 1
@@ -93,7 +96,14 @@ def addComp(newComp,leftComp,rightComp):
         
 
 def getFinalIndex(leftComp):
-        
+        bom = [x for x in leftComp if x[6] == True]
+        if len( bom ) != 1:
+        	print("ppppp,len :",len(bom))
+	        for k in bom:
+	        	print()
+	        	print(k)
+	        	print()
+    
         for i in leftComp:
                 if(i[6]==True):
                         return i[4]

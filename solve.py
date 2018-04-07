@@ -25,6 +25,7 @@ if __name__ == '__main__':
 
         leftComp = getLeftComp(leftCompSorted, rightCompSorted)
 
+
         rightComp = getRightComp(rightCompSorted, leftComp[1])
         
         if rightComp is not None:
