@@ -1,6 +1,9 @@
 import bisect
 runnin_index = 0
+
 #[solcubuk,sagcubuk,solkatsayi,sagkatsayi,index, isAvail, formüllü_sey]
+
+concats_actions = []
 
 def setRunIndex(n):
 	runnin_index=n
@@ -26,7 +29,7 @@ def getLeftComp(leftComp): #FOR NOW
 			continue
 		i[5]=False
 		for j in rightComp:
-			if( j[5] == i[5] ):
+			if( j[4] == i[4] ):
 				j[5] = False
 				break
 		return i
@@ -45,24 +48,38 @@ def getRightComp(rightComp,cubuk_sayi):
 
 	return None
 
+
+def concat(ele1, ele2):
+
+    if type(ele1) is int:
+        ele1 = [ele1]
+    if type(ele2) is int:
+        ele2 = [ele2]
+
+    return ele1 + ele2
+
+
 def generateNewComp(leftComp,rightComp):
-	solc = leftComp[0]
-	sagc = rightComp[1]
-	solkat = leftComp[2]
-	sagkat = rightComp[3]
-	index = runnin_index
-	runnin_index+=1
-	
-	new_enzim = [solc,sagc,solkat,sagkat,runnin_index,True]
-	time =solc*leftComp[1]*sagc
-	return (new_enzim,time)
 
-	#[solcubuk,sagcubuk,solkatsayi,sagkatsayi,index, isAvail, formül]
+    global concats_actions
 
+    solc = leftComp[0]
+    sagc = rightComp[1]
+    solkat = leftComp[2]
+    sagkat = rightComp[3]
+    index = concat(leftComp[4], rightComp[4])
 
+    concats_actions.append([index[0], index[-1]])
+
+    new_enzim = [solc,sagc,solkat,sagkat,runnin_index,True]
+    time = solc*leftComp[1]*sagc
+    return (new_enzim,time)
+
+    #[solcubuk,sagcubuk,solkatsayi,sagkatsayi,index, isAvail, formül]
 
 def addComp(newComp,leftComp,rightComp):
 	newCompRight = newComp + [newComp[1]/newComp[3]]
 	newCompLeft = newComp + [[x[0]*x[1]/x[4]]]
 	bisect.insort(leftComp,newCompLeft)
 	bisect.insort(rightComp,newCompRight)
+        

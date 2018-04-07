@@ -3,6 +3,7 @@ lst = [0] * n
 result = [None] * n
 
 ctr = 0
+seqStr = ""
 
 # lstElement ->
 #   [solNoktaSayisi, sagNoktaSayisi, solKatsayi, sagKatsayi, index, isAvail]
@@ -33,4 +34,5 @@ if __name__ == '__main__':
             ctr += comptime
 
     # finished all concatenations
+
     
